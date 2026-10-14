@@ -80,7 +80,6 @@ virtual-glasses-tryon/
 │   ├── pick_anchors.py
 │   └── common.py
 ├── assets/glasses/       # PNG + JSON pairs
-├── tests/
 ├── .github/workflows/ci.yml
 ├── pyproject.toml
 └── README.md
