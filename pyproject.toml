@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "virtual-glasses-tryon"
+version = "0.1.0"
+description = "Real-time virtual eyeglass try-on with MediaPipe Face Mesh and OpenCV."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["computer-vision", "opencv", "mediapipe", "virtual-try-on", "augmented-reality"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+dependencies = [
+    "numpy>=1.23",
+    "opencv-python>=4.8",
+    "mediapipe>=0.10",
+]
+
+[project.optional-dependencies]
+tools = ["rembg>=2.0", "onnxruntime>=1.16"]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+glasses-tryon = "glasses_tryon.app:main"
+glasses-remove-bg = "glasses_tryon.tools.remove_background:main"
+glasses-punch-lens = "glasses_tryon.tools.punch_lens:main"
+glasses-pick-anchors = "glasses_tryon.tools.pick_anchors:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["UP006", "UP007", "UP035", "UP045"]
